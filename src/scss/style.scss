@@ -1,0 +1,33 @@
+@import "~normalize.css/normalize.css";
+@import 'layout';
+@import 'forms';
+@import 'components/modal';
+@import 'components/tickets';
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  font-size: 16px;
+  height: 100%;
+  background-color: gainsboro;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
