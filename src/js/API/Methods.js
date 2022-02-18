@@ -11,10 +11,10 @@ export default class Methods {
     return fetcher(options);
   }
 
-  createTicket(data, callback) {
+  createUser(data, callback) {
     const options = {
       method: 'POST',
-      query: 'method=createTicket',
+      query: 'method=createUser',
       data,
       callback,
     };

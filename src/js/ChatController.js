@@ -1,4 +1,5 @@
 import Methods from './API/Methods';
+import Socket from './API/Socket';
 
 export default class ChatController {
   constructor(ui) {
@@ -13,8 +14,17 @@ export default class ChatController {
 
   onNewUserSubmitButtonClick(e) {
     this.methods.getAllUsers(response => {
-      console.log(response);
+      this.createUser(response);
     });
+  }
+
+  createUser(data) {
+    this.methods.createUser(data, (response) => {
+      this.currentUser = response;
+    });
+
+    this.socket = new Socket(this.currentUser);
+    this.socket.init();
   }
 
   findUserByName(name) {
