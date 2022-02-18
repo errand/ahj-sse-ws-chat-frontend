@@ -1,20 +1,10 @@
 import fetcher from './fetcher';
 
 export default class Methods {
-  createRandomTickets(callback) {
+  getAllUsers(callback) {
     const options = {
       method: 'GET',
-      query: 'method=getStartedTickets',
-      callback,
-    };
-
-    return fetcher(options);
-  }
-
-  getAllTickets(callback) {
-    const options = {
-      method: 'GET',
-      query: 'method=allTickets',
+      query: 'method=getAllUsers',
       callback,
     };
 
