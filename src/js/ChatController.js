@@ -14,12 +14,12 @@ export default class ChatController {
 
   onNewUserSubmitButtonClick(e) {
     this.methods.getAllUsers(response => {
-      this.createUser(response);
+      this.createUser('sasha');
     });
   }
 
   createUser(data) {
-    this.methods.createUser(data, (response) => {
+    this.methods.createUser(data, response => {
       this.currentUser = response;
     });
 

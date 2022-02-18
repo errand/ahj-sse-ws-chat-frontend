@@ -17,7 +17,6 @@ export default class Socket {
 
     this.ws.addEventListener('message', (evt) => {
       console.log('message');
-      console.log(evt);
     });
 
     this.ws.addEventListener('close', (evt) => {
