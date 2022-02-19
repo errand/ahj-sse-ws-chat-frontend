@@ -24,3 +24,11 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.chat--wrapper {
+  display: flex;
+
+  .chat--users-list {
+    flex-basis: 25%;
+  }
+}

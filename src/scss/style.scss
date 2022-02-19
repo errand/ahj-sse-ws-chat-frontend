@@ -2,7 +2,7 @@
 @import 'layout';
 @import 'forms';
 @import 'components/modal';
-@import 'components/tickets';
+@import 'components/users';
 
 *, ::after, ::before {
   box-sizing: border-box;
@@ -19,6 +19,10 @@ body {
   height: 100%;
   background-color: gainsboro;
   font-family: 'Roboto', sans-serif;
+}
+
+.blured {
+  filter: blur(2.5px);
 }
 
 .sr-only {

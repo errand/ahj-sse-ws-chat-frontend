@@ -1,0 +1,13 @@
+.user {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  .avatar {
+    flex-basis: 40px;
+    margin-right: 10px;
+    img {
+      max-width: 100%;
+    }
+  }
+}
