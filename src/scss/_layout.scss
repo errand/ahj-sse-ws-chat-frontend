@@ -1,3 +1,58 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  overflow: hidden;
+}
+
+#app {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#chatContainer {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.chat--messages-wrapper {
+  flex-basis: 75%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+.chat--messages {
+  flex: 1;
+  background: #fff;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.chat-form {
+  display: flex;
+  textarea {
+    flex-grow: 1;
+    outline: none;
+  }
+}
+
+.chat--users-list, .chat--messages-wrapper {
+  height: 100%;
+}
+
+.chat--users-list, .chat--messages {
+  overflow-y: auto;
+}
+
 .main-header {
   background-color: #212529;
   padding-top: 1rem;
@@ -27,6 +82,8 @@
 
 .chat--wrapper {
   display: flex;
+  width: 100%;
+  height: 100%;
 
   .chat--users-list {
     flex-basis: 25%;

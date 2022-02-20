@@ -10,6 +10,7 @@ export default class ChatController {
   init() {
     this.ui.drawUi();
     this.ui.newUserClickListener(this.onNewUserSubmitButtonClick.bind(this));
+    this.ui.formSubmit.addEventListener('click', e => this.onChatFormSubmit(e));
   }
 
   onNewUserSubmitButtonClick(e) {
@@ -28,22 +29,36 @@ export default class ChatController {
     });
   }
 
+  onChatFormSubmit(e) {
+    e.preventDefault();
+
+    if (this.ui.formInput.value !== '') {
+      this.createPost({ name: this.currentUser, text: this.ui.formInput.value });
+    } else {
+      this.ui.formInput.placeholder = 'Поле не может быть пустым';
+    }
+  }
+
   findUserIndexByName(arr, name) {
     return arr.findIndex((user) => user.name === name);
+  }
+
+  createPost(obj) {
+    this.methods.createPost(obj, response => {
+      this.ui.renderMessage(response);
+    });
   }
 
   createUser(data) {
     this.methods.createUser(data, response => {
       this.currentUser = response;
+      this.ui.addUserToList(this.currentUser, true);
+
+      this.ui.closeModal();
+
+      this.socket = new Socket(this.currentUser);
+      this.socket.init();
     });
-
-    console.log(this.currentUser);
-    /* this.ui.addUserToList(this.currentUser, true);
-
-    this.ui.closeModal();
-
-    this.socket = new Socket(this.currentUser);
-    this.socket.init(); */
   }
 
   findUserByName(name) {

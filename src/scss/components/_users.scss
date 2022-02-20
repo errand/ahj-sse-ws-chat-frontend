@@ -6,6 +6,7 @@
   .avatar {
     flex-basis: 40px;
     margin-right: 10px;
+    flex-shrink: 0;
     img {
       max-width: 100%;
     }

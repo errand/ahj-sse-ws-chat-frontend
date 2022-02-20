@@ -9,6 +9,8 @@ export default class Ui {
     this.inputName = null;
     this.usersList = null;
     this.chatSection = null;
+    this.formInput = null;
+    this.formSubmit = null;
     this.onAddUserClickListeners = [];
   }
 
@@ -25,9 +27,11 @@ export default class Ui {
     const chatSection = document.createElement('div');
     chatSection.classList.add('chat--wrapper');
     chatSection.classList.add('blured');
-    chatSection.innerHTML = '<div class="chat--users-list"></div><div class="chat--messages"></div>';
+    chatSection.innerHTML = '<div class="chat--users-list"></div><div class="chat--messages-wrapper"><div class="chat--messages"></div><form class="chat-form"><textarea class="form control" data-id="chat-input" rows="1"></textarea><button data-id="chat-submit"><i class="fa-solid fa-paper-plane"></i><span class="sr-only">Отправить</span></button></form></div>';
     this.usersList = chatSection.querySelector('.chat--users-list');
     this.messages = chatSection.querySelector('.chat--messages');
+    this.formInput = chatSection.querySelector('[data-id="chat-input"]');
+    this.formSubmit = chatSection.querySelector('[data-id="chat-submit"]');
 
     this.methods.getAllUsers(response => {
       response.forEach(user => this.addUserToList(user.name));
@@ -36,6 +40,19 @@ export default class Ui {
     this.chatSection = chatSection;
 
     this.container.appendChild(chatSection);
+  }
+
+  renderMessage(obj) {
+    const div = document.createElement('div');
+    div.classList.add('post');
+    div.classList.add('host');
+    div.innerHTML = `
+          <header class="post--header">
+            <span class="posts--author">${obj.user.name}, </span>
+            <time class="posts--date">${obj.created}</time>
+          </header>
+          <div class="post--content">${obj.text}</div>`;
+    this.messages.appendChild(div);
   }
 
   openModal() {
@@ -88,11 +105,11 @@ export default class Ui {
     const userDiv = document.createElement('div');
     userDiv.classList.add('user');
     if (author) {
-      userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0DBC8A&color=fff&name=${user}" alt="${user}"></div><div class="name author">${user} (Вы)`;
+      userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0DBC8A&color=fff&name=${user.name}" alt="${user.name}"></div><div class="name author">${user.name} (Вы)`;
       userDiv.classList.add('author');
       userList.prepend(userDiv);
     } else {
-      userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0D8ABC&color=fff&name=${user}" alt="${user}"></div><div class="name">${user}`;
+      userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0D8ABC&color=fff&name=${user.name}" alt="${user.name}"></div><div class="name">${user}`;
       userList.appendChild(userDiv);
     }
   }

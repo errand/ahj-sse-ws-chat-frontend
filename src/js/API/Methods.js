@@ -22,39 +22,21 @@ export default class Methods {
     return fetcher(options);
   }
 
+  createPost(data, callback) {
+    const options = {
+      method: 'POST',
+      query: 'method=createPost',
+      data,
+      callback,
+    };
+
+    return fetcher(options);
+  }
+
   getIndex(id, callback) {
     const options = {
       method: 'GET',
-      query: `method=getTicketById&id=${id}`,
-      callback,
-    };
-
-    return fetcher(options);
-  }
-
-  delete(id, callback) {
-    const options = {
-      method: 'GET',
-      query: `method=deleteTicket&id=${id}`,
-      callback,
-    };
-    return fetcher(options);
-  }
-
-  toggleTicketStatus(id, callback) {
-    const options = {
-      method: 'GET',
-      query: `method=toggleTicketStatus&id=${id}`,
-      callback,
-    };
-    return fetcher(options);
-  }
-
-  editTicket(data, callback) {
-    const options = {
-      method: 'POST',
-      query: 'method=editTicket',
-      data,
+      query: `method=getUserByName&name=${name}`,
       callback,
     };
 
