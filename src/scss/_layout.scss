@@ -2,6 +2,28 @@ html, body {
   height: 100%;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #95c8fe #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #95c8fe;
+  border-radius: 5px;
+  border: 3px solid #ffffff;
+}
+
 body {
   position: relative;
   overflow: hidden;
@@ -31,15 +53,49 @@ body {
 }
 
 .chat--messages {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   background: #fff;
   border-radius: 3px;
   margin-bottom: 1rem;
+  padding: 0.5rem;
+
+  .post {
+    padding: 0.25rem;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+    background: #d1e1f1;
+
+    &.host {
+      background: #ececec;
+      align-self: flex-end;
+
+      .post--header{
+        justify-content: flex-end;
+      }
+      .post--content {
+        text-align: right;
+      }
+    }
+
+    &--header {
+      display: flex;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-bottom: 0.25rem;
+    }
+
+    &--author {
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+  }
 }
 
 .chat-form {
   display: flex;
-  textarea {
+  .form-control {
     flex-grow: 1;
     outline: none;
   }
@@ -51,6 +107,9 @@ body {
 
 .chat--users-list, .chat--messages {
   overflow-y: auto;
+  direction: ltr;
+  scrollbar-color: #d4aa70 #e4e4e4;
+  scrollbar-width: thin;
 }
 
 .main-header {

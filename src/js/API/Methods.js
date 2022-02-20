@@ -11,6 +11,16 @@ export default class Methods {
     return fetcher(options);
   }
 
+  getAllPosts(callback) {
+    const options = {
+      method: 'GET',
+      query: 'method=getAllPosts',
+      callback,
+    };
+
+    return fetcher(options);
+  }
+
   createUser(data, callback) {
     const options = {
       method: 'POST',

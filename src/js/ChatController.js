@@ -34,6 +34,8 @@ export default class ChatController {
 
     if (this.ui.formInput.value !== '') {
       this.createPost({ name: this.currentUser, text: this.ui.formInput.value });
+      this.ui.formInput.value = '';
+      this.ui.messages.scrollTop = this.ui.messages.scrollHeight;
     } else {
       this.ui.formInput.placeholder = 'Поле не может быть пустым';
     }
