@@ -48,6 +48,7 @@ export default class Ui {
   }
 
   renderMessage(obj, host = true) {
+    console.log(obj);
     const div = document.createElement('div');
     div.classList.add('post');
     if (host) {
@@ -110,7 +111,7 @@ export default class Ui {
   }
 
   addUserToList(user, author = false) {
-    const userList = this.container.querySelector('.chat--users-list');
+    const userList = document.querySelector('.chat--users-list');
     const userDiv = document.createElement('div');
     userDiv.classList.add('user');
     if (author) {

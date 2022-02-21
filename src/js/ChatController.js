@@ -47,14 +47,13 @@ export default class ChatController {
 
   createPost(obj) {
     this.methods.createPost(obj, response => {
-      this.socket.sendMessage(obj);
+      this.socket.sendMessage(obj, response);
     });
   }
 
   createUser(data) {
     this.methods.createUser(data, response => {
       this.currentUser = response;
-      this.ui.addUserToList(this.currentUser, true);
 
       this.ui.closeModal();
 

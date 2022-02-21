@@ -27,12 +27,13 @@ export default class Socket {
     });
   }
 
-  sendMessage(data) {
+  sendMessage(user, text) {
+    const data = { user, text };
     if (this.ws.readyState === WebSocket.OPEN) {
       try {
-        const jsonMSG = JSON.stringify(data);
-        this.ws.send(jsonMSG);
-        this.name = jsonMSG.name;
+        const jsonUser = JSON.stringify(data.user);
+        this.ws.send(data);
+        this.name = jsonUser.name;
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +47,7 @@ export default class Socket {
     const data = JSON.parse(evt.data);
 
     if (data.type === 'connect') {
-      console.log('user registered');
+      this.ui.addUserToList(data.user, true);
     } else {
       console.log(data);
       this.ui.renderMessage(data);
