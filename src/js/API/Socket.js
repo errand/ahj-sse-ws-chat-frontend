@@ -1,23 +1,21 @@
+import Ui from '../Ui';
+
 export default class Socket {
   constructor(name) {
     this.name = name;
+    this.ui = new Ui();
   }
 
   init() {
-    // const board = new Board(document.getElementById('container'));
-    // this.ctrl = new Controller(board);
     this.url = 'ws://localhost:7070/ws';
     this.ws = new WebSocket(this.url);
 
     this.ws.addEventListener('open', (evt) => {
       console.log('connected');
-
-      // this.ctrl.addUser(evt.data);
     });
 
     this.ws.addEventListener('message', (evt) => {
-      console.log('message');
-      console.log(evt);
+      this.handleRequest(evt);
     });
 
     this.ws.addEventListener('close', (evt) => {
@@ -27,5 +25,31 @@ export default class Socket {
     this.ws.addEventListener('error', () => {
       console.log('error');
     });
+  }
+
+  sendMessage(data) {
+    if (this.ws.readyState === WebSocket.OPEN) {
+      try {
+        const jsonMSG = JSON.stringify(data);
+        this.ws.send(jsonMSG);
+        this.name = jsonMSG.name;
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log('Соединение разорвано, переподключаю...');
+      this.ws = new WebSocket(this.url);
+    }
+  }
+
+  handleRequest(evt) {
+    const data = JSON.parse(evt.data);
+
+    if (data.type === 'connect') {
+      console.log('user registered');
+    } else {
+      console.log(data);
+      this.ui.renderMessage(data);
+    }
   }
 }

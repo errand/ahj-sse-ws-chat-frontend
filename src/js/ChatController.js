@@ -33,7 +33,7 @@ export default class ChatController {
     e.preventDefault();
 
     if (this.ui.formInput.value !== '') {
-      this.createPost({ name: this.currentUser, text: this.ui.formInput.value });
+      this.createPost({ user: this.currentUser, text: this.ui.formInput.value });
       this.ui.formInput.value = '';
       this.ui.messages.scrollTop = this.ui.messages.scrollHeight;
     } else {
@@ -47,7 +47,7 @@ export default class ChatController {
 
   createPost(obj) {
     this.methods.createPost(obj, response => {
-      this.ui.renderMessage(response);
+      this.socket.sendMessage(obj);
     });
   }
 
@@ -61,9 +61,5 @@ export default class ChatController {
       this.socket = new Socket(this.currentUser);
       this.socket.init();
     });
-  }
-
-  findUserByName(name) {
-
   }
 }

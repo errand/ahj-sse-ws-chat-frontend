@@ -59,7 +59,9 @@ export default class Ui {
             <time class="post--date">${obj.created}</time>
           </header>
           <div class="post--content">${obj.text}</div>`;
-    this.messages.appendChild(div);
+    const messages = document.querySelector('.chat--messages');
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight - div.clientHeight;
   }
 
   openModal() {
