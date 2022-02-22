@@ -48,7 +48,6 @@ export default class Ui {
   }
 
   renderMessage(obj, host = true) {
-    console.log(obj);
     const div = document.createElement('div');
     div.classList.add('post');
     if (host) {

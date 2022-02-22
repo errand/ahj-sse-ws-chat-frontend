@@ -17,6 +17,7 @@ export default class ChatController {
     const form = e.target.closest('.modal-form');
     const name = form.querySelector('#userName').value.trim();
     this.ui.inputName.closest('.form-control').classList.remove('invalid');
+    // eslint-disable-next-line consistent-return
     this.methods.getAllUsers(response => {
       if (this.findUserIndexByName(response, name) === -1) {
         this.createUser(name);

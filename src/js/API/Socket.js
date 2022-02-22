@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Ui from '../Ui';
 
 export default class Socket {

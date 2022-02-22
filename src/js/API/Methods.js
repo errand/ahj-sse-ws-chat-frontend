@@ -43,7 +43,7 @@ export default class Methods {
     return fetcher(options);
   }
 
-  getIndex(id, callback) {
+  getIndex(name, callback) {
     const options = {
       method: 'GET',
       query: `method=getUserByName&name=${name}`,
