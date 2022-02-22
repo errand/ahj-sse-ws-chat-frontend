@@ -48,7 +48,7 @@ export default class ChatController {
 
   createPost(obj) {
     this.methods.createPost(obj, response => {
-      this.socket.sendMessage(obj);
+      this.socket.sendMessage(response);
     });
   }
 

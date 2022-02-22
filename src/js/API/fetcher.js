@@ -1,6 +1,6 @@
 const fetcher = async (options) => {
-  // const URL = 'http://localhost:7070/';
-  const URL = 'https://errand-ahj-sse-ws-chat.herokuapp.com/';
+  const URL = 'http://localhost:7070/';
+  // const URL = 'https://errand-ahj-sse-ws-chat.herokuapp.com/';
   const requestUrl = `${URL}?${options.query}`;
 
   const request = await fetch(requestUrl, {

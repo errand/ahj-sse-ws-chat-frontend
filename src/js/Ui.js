@@ -55,7 +55,7 @@ export default class Ui {
     }
     div.innerHTML = `
           <header class="post--header">
-            <span class="post--author">${obj.user.name}, </span>
+            <span class="post--author">${obj.user}, </span>
             <time class="post--date">${obj.created}</time>
           </header>
           <div class="post--content">${obj.text}</div>`;
