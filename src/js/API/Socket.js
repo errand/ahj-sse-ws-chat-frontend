@@ -27,13 +27,13 @@ export default class Socket {
     });
   }
 
-  sendMessage(user, text) {
-    const data = { user, text };
+  sendMessage(obj) {
+    console.log(obj);
     if (this.ws.readyState === WebSocket.OPEN) {
       try {
-        const jsonUser = JSON.stringify(data.user);
+        const data = JSON.stringify(obj);
         this.ws.send(data);
-        this.name = jsonUser.name;
+        this.name = obj.user.name;
       } catch (error) {
         console.log(error);
       }
