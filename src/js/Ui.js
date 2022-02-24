@@ -111,15 +111,27 @@ export default class Ui {
 
   addUserToList(user, author = false) {
     const userList = document.querySelector('.chat--users-list');
-    const userDiv = document.createElement('div');
-    userDiv.classList.add('user');
-    if (author) {
-      userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0DBC8A&color=fff&name=${user.name}" alt="${user.name}"></div><div class="name author">${user.name} (Вы)`;
-      userDiv.classList.add('author');
-      userList.prepend(userDiv);
-    } else {
-      userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0D8ABC&color=fff&name=${user}" alt="${user}"></div><div class="name">${user}`;
-      userList.appendChild(userDiv);
+    const users = userList.querySelectorAll('.user');
+    try {
+      const index = [...users].findIndex(
+        (elem) => elem.dataset.username === user.name,
+      );
+
+      if (index === -1) {
+        const userDiv = document.createElement('div');
+        userDiv.classList.add('user');
+        userDiv.dataset.username = user.name;
+        if (author) {
+          userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0DBC8A&color=fff&name=${user.name}" alt="${user.name}"></div><div class="name author">${user.name} (Вы)`;
+          userDiv.classList.add('author');
+          userList.prepend(userDiv);
+        } else {
+          userDiv.innerHTML = `<div class="avatar"><img src="https://eu.ui-avatars.com/api/?background=0D8ABC&color=fff&name=${user}" alt="${user}"></div><div class="name">${user}`;
+          userList.appendChild(userDiv);
+        }
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 

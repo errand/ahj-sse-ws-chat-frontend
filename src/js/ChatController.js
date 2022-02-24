@@ -32,11 +32,12 @@ export default class ChatController {
 
   createUser(data) {
     this.methods.createUser(data, response => {
+      this.ui.addUserToList(response, true);
       this.currentUser = response;
-
       this.ui.closeModal();
 
       this.socket = new Socket(this.currentUser);
+      console.log(this.socket);
       this.socket.init();
     });
   }
