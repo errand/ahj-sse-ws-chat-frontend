@@ -30,6 +30,21 @@ export default class ChatController {
     });
   }
 
+  createUser(data) {
+    this.methods.createUser(data, response => {
+      this.currentUser = response;
+
+      this.ui.closeModal();
+
+      this.socket = new Socket(this.currentUser);
+      this.socket.init();
+    });
+  }
+
+  findUserIndexByName(arr, name) {
+    return arr.findIndex((user) => user.name === name);
+  }
+
   onChatFormSubmit(e) {
     e.preventDefault();
 
@@ -42,24 +57,9 @@ export default class ChatController {
     }
   }
 
-  findUserIndexByName(arr, name) {
-    return arr.findIndex((user) => user.name === name);
-  }
-
   createPost(obj) {
     this.methods.createPost(obj, response => {
       this.socket.sendMessage(response);
-    });
-  }
-
-  createUser(data) {
-    this.methods.createUser(data, response => {
-      this.currentUser = response;
-
-      this.ui.closeModal();
-
-      this.socket = new Socket(this.currentUser);
-      this.socket.init();
     });
   }
 }

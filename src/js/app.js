@@ -1,5 +1,4 @@
 import ChatController from './ChatController';
-import Socket from './API/Socket';
 import Ui from './Ui';
 
 const ui = new Ui();
