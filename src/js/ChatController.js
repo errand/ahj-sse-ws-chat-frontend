@@ -37,7 +37,6 @@ export default class ChatController {
       this.ui.closeModal();
 
       this.socket = new Socket(this.currentUser);
-      console.log(this.socket);
       this.socket.init();
     });
   }
@@ -60,7 +59,7 @@ export default class ChatController {
 
   createPost(obj) {
     this.methods.createPost(obj, response => {
-      this.socket.sendMessage(response);
+      this.socket.sendMessage(response, this.currentUser);
     });
   }
 }
