@@ -8,7 +8,8 @@ export default class Socket {
   }
 
   init() {
-    this.url = 'ws://localhost:7070/ws';
+    // this.url = 'ws://localhost:7070/ws';
+    this.url = 'wss://errand-ahj-sse-ws-chat.herokuapp.com/';
     this.ws = new WebSocket(this.url);
 
     this.ws.addEventListener('open', (evt) => {
